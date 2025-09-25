@@ -118,9 +118,10 @@
 }
 
 .hero-icon {
-  color: var(--ua-crimson);
   animation: float 3s ease-in-out infinite;
   filter: drop-shadow(0 4px 8px rgba(158, 27, 50, 0.2));
+  border: 3px solid var(--ua-crimson);
+  box-shadow: 0 4px 15px rgba(158, 27, 50, 0.3);
 }
 
 .hero-icon-lightning {
@@ -130,8 +131,7 @@
 
 .hero-decorative {
   opacity: 0.1;
-  font-size: 15rem;
-  color: var(--ua-crimson);
+  z-index: -1;
 }
 
 /* Features section */
@@ -373,6 +373,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Logo styling */
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+  transform: scale(1.1);
+}
+
+.footer-title img {
+  transition: transform 0.3s ease;
+}
+
+.footer-title img:hover {
+  transform: scale(1.1);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-section {
@@ -391,5 +408,13 @@ html {
   
   .hero-buttons .btn {
     width: 100%;
+  }
+  
+  .hero-icon {
+    height: 6rem !important;
+  }
+  
+  .hero-decorative img {
+    height: 10rem !important;
   }
 }

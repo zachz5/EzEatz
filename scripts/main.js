@@ -187,7 +187,8 @@ function renderApp() {
     <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-          <i class="bi bi-egg-fried me-2" style="font-size: 1.5rem;"></i>EzEats
+          <img src="../140-1405828_ncaa-football-top-25-2012-alabama-football-logo.png" alt="Alabama Logo" class="me-2" style="height: 2rem; width: auto;">
+          EzEats
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -246,7 +247,7 @@ function renderApp() {
                 <small>Quick & Easy</small>
               </div>
               <div class="d-flex align-items-center">
-                <i class="bi bi-check-circle-fill me-2"></i>
+                <i class="bi bi-building me-2" style="color: var(--ua-crimson);"></i>
                 <small>Dorm-Friendly</small>
               </div>
             </div>
@@ -254,7 +255,7 @@ function renderApp() {
           <div class="col-lg-6">
             <div class="text-center position-relative">
               <div class="position-relative d-inline-block">
-                <i class="bi bi-egg-fried display-1 hero-icon"></i>
+                <img src="../140-1405828_ncaa-football-top-25-2012-alabama-football-logo.png" alt="Alabama Logo" class="hero-icon" style="height: 8rem; width: auto; border-radius: 50%; object-fit: cover;">
                 <div class="position-absolute top-0 start-0 translate-middle">
                   <i class="bi bi-lightning-fill fs-1 hero-icon-lightning"></i>
                 </div>
@@ -265,7 +266,7 @@ function renderApp() {
       </div>
       <!-- Decorative elements -->
       <div class="position-absolute top-0 end-0 hero-decorative">
-        <i class="bi bi-egg-fried"></i>
+        <img src="../140-1405828_ncaa-football-top-25-2012-alabama-football-logo.png" alt="Alabama Logo" style="height: 15rem; width: auto; opacity: 0.1;">
       </div>
     </section>
 
@@ -472,7 +473,7 @@ function renderApp() {
         <div class="row">
           <div class="col-md-6">
             <h5 class="fw-bold mb-3 footer-title">
-              <i class="bi bi-egg-fried me-2"></i>EzEats
+              <img src="../140-1405828_ncaa-football-top-25-2012-alabama-football-logo.png" alt="Alabama Logo" class="me-2" style="height: 1.5rem; width: auto;">EzEats
             </h5>
             <p class="footer-text">
               Making dorm cooking easy, affordable, and delicious for students everywhere.
