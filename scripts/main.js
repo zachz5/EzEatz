@@ -172,12 +172,327 @@ let totalCost = 0;
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
-  renderRecipes();
-  renderMealPlans();
-  setupEventListeners();
+  renderApp();
   trackTimeSpent();
   console.log('Dorm Chef app initialized! 🍳');
 });
+
+// Render the entire app
+function renderApp() {
+  const app = document.getElementById('app');
+  if (!app) return;
+  
+  app.innerHTML = `
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+          <i class="bi bi-egg-fried me-2" style="font-size: 1.5rem;"></i>EzEats
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active fw-semibold px-3 py-2 rounded" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3 py-2 rounded" href="#recipes">Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3 py-2 rounded" href="#meal-plans">Meal Plans</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-semibold px-3 py-2 rounded" href="#grocery">Grocery List</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section py-5 position-relative overflow-hidden">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="mb-4">
+              <span class="badge bg-light text-dark hero-badge mb-3">
+                <i class="bi bi-star-fill me-1" style="color: #ffc107;"></i>Student Approved
+              </span>
+            </div>
+            <h1 class="display-3 fw-bold mb-4 hero-title">
+              Cook Like a Pro in Your Dorm with <span class="text-decoration-underline">EzEats</span>
+            </h1>
+            <p class="lead mb-4 fs-5 hero-subtitle">
+              Affordable, easy recipes designed for dorm life. Save money, eat healthy, 
+              and master cooking with just a microwave, hot plate, or kettle.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mb-4 hero-buttons">
+              <button class="btn btn-primary btn-lg px-4 py-3" id="browseRecipesBtn">
+                <i class="bi bi-book me-2"></i>Browse Recipes
+              </button>
+              <button class="btn btn-outline-primary btn-lg px-4 py-3" id="mealPlanBtn">
+                <i class="bi bi-calendar-week me-2"></i>Meal Planning
+              </button>
+            </div>
+            <div class="d-flex align-items-center gap-4 text-muted hero-features">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <small>Budget-Friendly</small>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <small>Quick & Easy</small>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <small>Dorm-Friendly</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="text-center position-relative">
+              <div class="position-relative d-inline-block">
+                <i class="bi bi-egg-fried display-1 hero-icon"></i>
+                <div class="position-absolute top-0 start-0 translate-middle">
+                  <i class="bi bi-lightning-fill fs-1 hero-icon-lightning"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Decorative elements -->
+      <div class="position-absolute top-0 end-0 hero-decorative">
+        <i class="bi bi-egg-fried"></i>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-white">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-12">
+            <h2 class="display-5 fw-bold mb-3 features-title">Why Choose EzEats?</h2>
+            <p class="lead features-subtitle">Designed specifically for student life with modern features that make cooking simple and affordable</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-lg feature-card">
+              <div class="card-body text-center p-5">
+                <div class="mb-4">
+                  <div class="d-inline-flex align-items-center justify-content-center rounded-circle feature-icon">
+                    <i class="bi bi-currency-dollar display-4 text-white"></i>
+                  </div>
+                </div>
+                <h5 class="card-title fw-bold mb-3 feature-title">Budget-Friendly</h5>
+                <p class="card-text feature-text">
+                  Recipes under $3 per serving. Save money on food while eating well and building healthy habits.
+                </p>
+                <div class="mt-4">
+                  <span class="badge bg-light text-dark px-3 py-2 feature-badge">
+                    <i class="bi bi-check-circle me-1" style="color: var(--ua-crimson);"></i>Under $3/serving
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-lg feature-card">
+              <div class="card-body text-center p-5">
+                <div class="mb-4">
+                  <div class="d-inline-flex align-items-center justify-content-center rounded-circle feature-icon">
+                    <i class="bi bi-microwave display-4 text-white"></i>
+                  </div>
+                </div>
+                <h5 class="card-title fw-bold mb-3 feature-title">Dorm-Friendly</h5>
+                <p class="card-text feature-text">
+                  Works with microwave, hot plate, or kettle. No fancy equipment needed - just basic dorm essentials.
+                </p>
+                <div class="mt-4">
+                  <span class="badge bg-light text-dark px-3 py-2 feature-badge">
+                    <i class="bi bi-check-circle me-1" style="color: var(--ua-crimson);"></i>No special equipment
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-lg feature-card">
+              <div class="card-body text-center p-5">
+                <div class="mb-4">
+                  <div class="d-inline-flex align-items-center justify-content-center rounded-circle feature-icon">
+                    <i class="bi bi-clock display-4 text-white"></i>
+                  </div>
+                </div>
+                <h5 class="card-title fw-bold mb-3 feature-title">Quick & Easy</h5>
+                <p class="card-text feature-text">
+                  Most recipes ready in 15 minutes or less. Perfect for busy students who need fast, nutritious meals.
+                </p>
+                <div class="mt-4">
+                  <span class="badge bg-light text-dark px-3 py-2 feature-badge">
+                    <i class="bi bi-check-circle me-1" style="color: var(--ua-crimson);"></i>15 min or less
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recipe Filters -->
+    <section class="py-5 filter-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="text-center mb-4">
+              <h3 class="fw-bold mb-2 filter-title">Find Your Perfect Recipe</h3>
+              <p class="text-muted">Filter recipes by equipment, budget, and time to find exactly what you need</p>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+                <div class="card border-0 shadow-sm filter-card">
+                  <div class="card-body p-4">
+                    <div class="row g-3 align-items-center">
+                      <div class="col-md-3">
+                        <label class="form-label fw-semibold mb-2 filter-label">
+                          <i class="bi bi-gear me-1"></i>Equipment
+                        </label>
+                        <select class="form-select form-select-lg" id="equipmentFilter">
+                          <option value="">All Equipment</option>
+                          <option value="microwave">Microwave Only</option>
+                          <option value="hotplate">Hot Plate</option>
+                          <option value="kettle">Kettle Only</option>
+                          <option value="stovetop">Stovetop</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label class="form-label fw-semibold mb-2 filter-label">
+                          <i class="bi bi-currency-dollar me-1"></i>Budget
+                        </label>
+                        <select class="form-select form-select-lg" id="costFilter">
+                          <option value="">All Prices</option>
+                          <option value="1">Under $1</option>
+                          <option value="2">Under $2</option>
+                          <option value="3">Under $3</option>
+                          <option value="5">Under $5</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label class="form-label fw-semibold mb-2 filter-label">
+                          <i class="bi bi-clock me-1"></i>Time
+                        </label>
+                        <select class="form-select form-select-lg" id="timeFilter">
+                          <option value="">All Times</option>
+                          <option value="5">Under 5 min</option>
+                          <option value="10">Under 10 min</option>
+                          <option value="15">Under 15 min</option>
+                          <option value="30">Under 30 min</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3 d-flex align-items-end">
+                        <button class="btn btn-outline-primary btn-lg w-100" id="clearFilters">
+                          <i class="bi bi-arrow-clockwise me-2"></i>Reset Filters
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section id="recipes" class="py-5">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-12">
+            <h2 class="h2 fw-bold text-primary">Dorm-Friendly Recipes</h2>
+            <p class="text-muted">10 budget-friendly recipes perfect for student life</p>
+          </div>
+        </div>
+        <div class="row g-4" id="recipeItems">
+          <!-- Recipe items will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Meal Planning Section -->
+    <section id="meal-plans" class="py-5 bg-light">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-12">
+            <h2 class="h2 fw-bold text-primary">Weekly Meal Plans</h2>
+            <p class="text-muted">Pre-planned meals to save time and money</p>
+          </div>
+        </div>
+        <div class="row g-4" id="mealPlanItems">
+          <!-- Meal plans will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Grocery List Section -->
+    <section id="grocery" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="card grocery-card">
+              <div class="card-header">
+                <h5 class="mb-0 grocery-title">
+                  <i class="bi bi-list-ul me-2"></i>Your Grocery List
+                </h5>
+              </div>
+              <div class="card-body">
+                <div id="groceryList">
+                  <p class="text-center grocery-text">Add recipes to build your grocery list</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <span id="totalCost" class="grocery-text">Total: $0.00</span>
+                  <button class="btn btn-success" id="downloadGroceryList" disabled>
+                    <i class="bi bi-download me-1"></i>Download List
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="fw-bold mb-3 footer-title">
+              <i class="bi bi-egg-fried me-2"></i>EzEats
+            </h5>
+            <p class="footer-text">
+              Making dorm cooking easy, affordable, and delicious for students everywhere.
+            </p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p class="mb-0 footer-text">
+              &copy; 2025 EzEats. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  `;
+  
+  // Initialize components
+  renderRecipes();
+  renderMealPlans();
+  setupEventListeners();
+}
 
 // Track time spent on page
 function trackTimeSpent() {
@@ -192,23 +507,33 @@ function renderRecipes(filteredRecipes = recipes) {
   
   recipeContainer.innerHTML = filteredRecipes.map(recipe => `
     <div class="col-lg-4 col-md-6">
-      <div class="card recipe-item h-100 border-0 shadow-sm">
-        <div class="card-body d-flex flex-column">
-          <div class="text-center mb-3">
-            <span class="display-1">${recipe.image}</span>
+      <div class="card h-100 border-0 shadow-lg recipe-card">
+        <div class="card-body d-flex flex-column p-4">
+          <div class="text-center mb-4">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3 recipe-icon">
+              <span class="display-4 text-white">${recipe.image}</span>
+            </div>
           </div>
-          <h5 class="card-title">${recipe.name}</h5>
-          <p class="card-text text-muted flex-grow-1">${recipe.description}</p>
-          <div class="mb-3">
-            <span class="badge bg-primary me-1">$${recipe.cost}</span>
-            <span class="badge bg-secondary me-1">${recipe.time} min</span>
-            <span class="badge bg-info">${recipe.equipment}</span>
+          <h5 class="card-title fw-bold mb-3 text-center recipe-title">${recipe.name}</h5>
+          <p class="card-text text-center flex-grow-1 mb-4 recipe-text">${recipe.description}</p>
+          <div class="mb-4">
+            <div class="d-flex flex-wrap gap-2 justify-content-center">
+              <span class="badge px-3 py-2 recipe-badge recipe-badge-cost">
+                <i class="bi bi-currency-dollar me-1"></i>$${recipe.cost}
+              </span>
+              <span class="badge px-3 py-2 recipe-badge recipe-badge-time">
+                <i class="bi bi-clock me-1"></i>${recipe.time} min
+              </span>
+              <span class="badge px-3 py-2 recipe-badge recipe-badge-equipment">
+                <i class="bi bi-gear me-1"></i>${recipe.equipment}
+              </span>
+            </div>
           </div>
           <div class="d-flex gap-2">
-            <button class="btn btn-primary btn-sm flex-grow-1" onclick="addToGroceryList(${recipe.id})">
+            <button class="btn btn-primary btn-sm flex-grow-1 py-2 recipe-btn" onclick="addToGroceryList(${recipe.id})">
               <i class="bi bi-cart-plus me-1"></i>Add to List
             </button>
-            <button class="btn btn-outline-primary btn-sm" onclick="showRecipeDetails(${recipe.id})">
+            <button class="btn btn-outline-primary btn-sm py-2 recipe-btn recipe-btn-outline" onclick="showRecipeDetails(${recipe.id})">
               <i class="bi bi-eye me-1"></i>View
             </button>
           </div>
@@ -224,12 +549,12 @@ function renderMealPlans() {
   
   mealPlanContainer.innerHTML = mealPlans.map(plan => `
     <div class="col-lg-4 col-md-6">
-      <div class="card h-100 border-0 shadow-sm">
+      <div class="card h-100 border-0 shadow-lg meal-plan-card">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">${plan.name}</h5>
-          <p class="card-text text-muted flex-grow-1">${plan.description}</p>
+          <h5 class="card-title meal-plan-title">${plan.name}</h5>
+          <p class="card-text text-muted flex-grow-1 meal-plan-text">${plan.description}</p>
           <div class="mb-3">
-            <span class="h5 text-primary">$${plan.totalCost}</span>
+            <span class="h5 text-primary meal-plan-cost">$${plan.totalCost}</span>
             <span class="text-muted ms-2">total</span>
           </div>
           <button class="btn btn-success" onclick="addMealPlanToGroceryList(${plan.id})">
